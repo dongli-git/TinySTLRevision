@@ -1,2 +1,2 @@
  - this is a revision on the base of MyTinySTL
- - i just add some comment to learn more conveniently.(windows)
+ - i just add some comment to learn more conveniently.(windows !)
