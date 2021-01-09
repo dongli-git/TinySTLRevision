@@ -49,7 +49,7 @@ T* allocator<T>::allocate()
   return static_cast<T*>(::operator new(sizeof(T)));
 }
 
-//分配一块内存并且返回一个非空的指向第一个字节的指针
+//分配一块内存并且返回一个非空的指向第一个字节的指针.
 template <class T>
 T* allocator<T>::allocate(size_type n)
 {
