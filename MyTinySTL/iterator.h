@@ -10,11 +10,18 @@
 namespace mystl
 {
 
-// 五种迭代器类型
+// 五种迭代器类型，这些class只作为标记用，所以不需要任何成员
+
+//这种迭代器所指对象不允许外界改变，只读（read only）
 struct input_iterator_tag {};
+//write only
 struct output_iterator_tag {};
+//允许“写入型算法”在此迭代器形成的区间上进行读写操作
 struct forward_iterator_tag : public input_iterator_tag {};
+// 可双向移动
 struct bidirectional_iterator_tag : public forward_iterator_tag {};
+//前四种迭代器都只供应部分指针运算能力（前三种：operate++，第四种：--）
+//Random Access Iterator涵盖了所有指针运算能力
 struct random_access_iterator_tag : public bidirectional_iterator_tag {};
 
 // iterator 模板
@@ -71,7 +78,7 @@ template <class Iterator>
 struct iterator_traits 
   : public iterator_traits_helper<Iterator, has_iterator_cat<Iterator>::value> {};
 
-// 针对原生指针的偏特化版本
+// 针对原生指针的偏特化版本  partial specialization
 template <class T>
 struct iterator_traits<T*>
 {

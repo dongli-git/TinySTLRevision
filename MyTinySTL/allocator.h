@@ -24,20 +24,21 @@ public:
   typedef ptrdiff_t    difference_type;
 
 public:
-  static T*   allocate();  //静态的成员函数
+//静态的成员函数
+  static T*   allocate();  //内存配置 
   static T*   allocate(size_type n);
 
-  static void deallocate(T* ptr);
+  static void deallocate(T* ptr);  //内存释放
   static void deallocate(T* ptr, size_type n);
 
-  static void construct(T* ptr);
+  static void construct(T* ptr);   //内存配置后的对象构造行为
   static void construct(T* ptr, const T& value);
   static void construct(T* ptr, T&& value);
 
   template <class... Args>
   static void construct(T* ptr, Args&& ...args);
 
-  static void destroy(T* ptr);
+  static void destroy(T* ptr); //内存释放前的对象析构行为
   static void destroy(T* first, T* last);
 };
 

@@ -47,9 +47,10 @@ void construct(Ty* ptr, Args&&... args)
 }
 
 // destroy 将对象析构
-
+//类型自带有trivial destructor 无需额外操作
 template <class Ty>
 void destroy_one(Ty*, std::true_type) {}
+
 
 template <class Ty>
 void destroy_one(Ty* pointer, std::false_type)
@@ -74,6 +75,9 @@ void destroy_cat(ForwardIter first, ForwardIter last, std::false_type)
     destroy(&*first);
 }
 
+
+//is_trivially_destructible：元素的数值型别（value type）
+//是否有destructor
 template <class Ty>
 void destroy(Ty* pointer)
 {
