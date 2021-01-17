@@ -55,7 +55,7 @@ public:
   typedef typename allocator_type::size_type       size_type;
   typedef typename allocator_type::difference_type difference_type;
 
-  typedef value_type*                              iterator;
+  typedef value_type*                              iterator; //vactor的迭代器就是普通指针
   typedef const value_type*                        const_iterator;
   typedef mystl::reverse_iterator<iterator>        reverse_iterator;
   typedef mystl::reverse_iterator<const_iterator>  const_reverse_iterator;
@@ -113,7 +113,7 @@ public:
   {
     vector tmp(ilist.begin(), ilist.end());
     swap(tmp);
-    return *this;
+    return *this; //返回当前对象的本身
   }
 
   ~vector()

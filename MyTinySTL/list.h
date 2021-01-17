@@ -47,7 +47,9 @@ struct list_node_base
   base_ptr prev;  // 前一节点
   base_ptr next;  // 下一节点
 
-  list_node_base() = default;
+  list_node_base() = default; //the compiler will define 
+  //the implicit default constructor 
+  //even if other constructors are present
 
   node_ptr as_node()
   {
@@ -61,6 +63,7 @@ struct list_node_base
 
   base_ptr self()
   {
+    //保证返回的一定是一个指针，在this有可能是智能指针的情况下
     return static_cast<base_ptr>(&*this);
   }
 };
@@ -78,7 +81,7 @@ struct list_node : public list_node_base<T>
     :value(v)
   {
   }
-  list_node(T&& v)
+  list_node(T&& v) //右值引用
     :value(mystl::move(v))
   {
   }
@@ -104,7 +107,7 @@ struct list_iterator : public mystl::iterator<mystl::bidirectional_iterator_tag,
   typedef typename node_traits<T>::node_ptr node_ptr;
   typedef list_iterator<T>                  self;
 
-  base_ptr node_;  // 指向当前节点
+  base_ptr node_;  // 一个指向当前节点的指针
 
   // 构造函数
   list_iterator() = default;
@@ -850,7 +853,7 @@ template <class T>
 void list<T>::fill_init(size_type n, const value_type& value)
 {
   node_ = base_allocator::allocate(1);
-  node_->unlink();
+  node_->unlink(); //prev = next = self();
   size_ = n;
   try
   {

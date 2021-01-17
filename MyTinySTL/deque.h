@@ -15,6 +15,10 @@
 //   * push_back
 //   * insert
 
+//deque比vector复杂的多，因此，除非必要，我们应尽可能的选择vector而不是deque，
+//对deque进行的排序操作，为了最高效率，可将deque先完整的复制到一个vector身上，
+//将vector排序后（利用STL sort），再复制回deque。
+
 #include <initializer_list>
 
 #include "iterator.h"
